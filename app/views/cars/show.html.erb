@@ -4,10 +4,4 @@
 <h2>Book Car</h2>
 <h2>Car Reviews</h2>
 
-<%= simple_form_for @review do |f| %>
-  <%= f.input :username, label: 'Your username please', error: 'Username is mandatory, please specify one' %>
-  <%= f.input :password, hint: 'No special characters.' %>
-  <%= f.input :email, placeholder: 'user@domain.com' %>
-  <%= f.input :remember_me, inline_label: 'Yes, remember me' %>
-  <%= f.button :submit %>
-<% end %>
+<%= render "reviews/form" %>
