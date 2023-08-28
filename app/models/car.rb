@@ -3,5 +3,5 @@ class Car < ApplicationRecord
   has_many :reviews
   has_many :bookings
 
-  validates :brand, :year, :location, presence: true
+  validates :title, :brand, :year, :location, presence: true
 end
