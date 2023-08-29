@@ -1,0 +1,11 @@
+<h1 class="text-center mt-3">Chat with the owner</h1>
+
+<div class="container-fluid">
+  <ul class="list-group d-flex">
+    <% User.all.each do |user| %>
+     <li class="list-group-item col-2">
+        <%= render "form", user: user %>
+     </li>
+    <% end %>
+  </ul>
+</div>
