@@ -1,0 +1,22 @@
+<% @booking = booking %>
+<div class="card m-2 col-3 p-0 rounded"  data-controller="edit-form">
+  <img src="https://media.istockphoto.com/id/542548890/pt/foto/ford-fiesta-st.jpg?s=612x612&w=is&k=20&c=fD_kGD6DISUNIaq0wKx25SHQt1B0tYoQDAYVd1suUpI=" class="card-img-top"  alt="...">
+  <div class="card-body">
+    <h5 class="card-title"> <%= "#{booking.car.brand} " + "#{booking.car.model}" %></h5>
+  </div>
+  <ul class="list-group list-group-flush">
+    <li class="list-group-item"><%= "$ #{booking.price}/hour" %></li>
+    <li class="list-group-item">Rented to: <%= "#{booking.user.name}" %></li>
+    <li class="list-group-item"><%= "From: #{booking.date_from} To: #{booking.date_until}" %></li>
+  </ul>
+  <div class="card-body">
+    <%# <%= link_to "Manage Booking", booking_path(booking), class: "btn btn-primary mb-2", data: {action: "click->edit-form#fire"} %>
+    <button data-action='click->edit-form#fire' class='m-1 btn btn-primary'>Manage</button>
+    <div class="d-none" data-edit-form-target="dropElement">
+      <%= render 'form', booking: @booking%>
+    </div>
+
+    <%# <p data-edit-form-target="dropElement" class='d-none'>Coisa aleatoria</p> %>
+    <%= link_to "Delete Booking", booking_path(booking), data: { turbo_method: :delete, turbo_confirm: 'Are you sure?'}, class: "btn btn-danger" %>
+  </div>
+</div>
