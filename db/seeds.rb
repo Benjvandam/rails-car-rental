@@ -5,6 +5,7 @@
 #
 #   movies = Movie.create([{ name: "Star Wars" }, { name: "Lord of the Rings" }])
 #   Character.create(name: "Luke", movie: movies.first)
+require "open-uri"
 require "faker"
 
 Car.destroy_all
@@ -19,7 +20,12 @@ end
 
 5.times do
   manufacturer = Faker::Vehicle.make
-  Car.create(brand: manufacturer, model: Faker::Vehicle.model(make_of_model: manufacturer),
+  car = Car.new(brand: manufacturer, model: Faker::Vehicle.model(make_of_model: manufacturer),
              year: (1960..2023).to_a.sample, description: Faker::Quote.famous_last_words,
              location: Faker::University.name, user: array_of_users.sample, title: Faker::Cannabis.strain)
+
+  file = URI.open("https://upload.wikimedia.org/wikipedia/commons/thumb/8/82/NES-Console-Set.jpg/1200px-NES-Console-Set.jpg")
+
+  car.photo.attach(io: file, filename: "nes.png", content_type: "image/png")
+  car.save!
 end
