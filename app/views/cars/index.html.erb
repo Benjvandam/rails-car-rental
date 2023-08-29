@@ -6,8 +6,10 @@
     <% @cars.each do |car| %>
       <div class="col-3">
         <div class="card-category" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url(https://raw.githubusercontent.com/lewagon/fullstack-images/master/uikit/breakfast.jpg)">
-          <h1 class="text-light"> <%= car.title %></h1>
-            <p class="text-light"><%= car.brand %></p>
+          <h1 class="text-light"> <%= link_to car.title, car_path(car) %></h1>
+            <p class="text-light">Brand:<%= car.brand %></p>
+            <p class="text-light">Location:<%= car.location %></p>
+-
         </div>
       </div>
     <% end %>
