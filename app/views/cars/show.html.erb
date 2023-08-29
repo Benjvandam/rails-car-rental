@@ -4,4 +4,17 @@
 <h2>Book Car</h2>
 <h2>Car Reviews</h2>
 
-<%= render "reviews/form" %>
+
+<div class="container">
+
+   <h1><%= @car.title %></h1>
+  <p>Brand: <%= @car.brand %></p>
+  <p>Model: <%= @car.model %></p>
+  <p>Year: <%= @car.year %></p>
+  <p>Description: <%= @car.description %></p>
+
+
+  <%= link_to 'Back to all cars', cars_path %> |
+  <%= link_to "Edit #{@car.title}", edit_car_path(@car) %>
+
+</div>
