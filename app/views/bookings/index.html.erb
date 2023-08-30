@@ -1,0 +1,13 @@
+
+<h1>Bookings overview</h1>
+<div class="container">
+  <div class="row">
+
+
+      <% @bookings.each do |booking| %>
+        <%= render 'card', booking: booking %>
+      <% end %>
+
+
+  </div>
+</div>

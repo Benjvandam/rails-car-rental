@@ -3,16 +3,15 @@ Rails.application.routes.draw do
   root to: "cars#index"
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
   resources :cars do
-    resources :bookings, only: %i[index edit update create]
+    resources :bookings, only: %i[index create]
     resources :reviews, only: %i[index create]
   end
 
-  resources :bookings, only: %i[destroy]
+  resources :bookings, only: %i[index destroy edit update]
 
   resources :chatrooms, only: %i[index create show] do
     resources :messages, only: :create
   end
-
 
   # Defines the root path route ("/")
   # root "articles#index"
