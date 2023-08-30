@@ -1,9 +1,9 @@
 class ReviewsController < ApplicationController
   before_action :set_review, only: %i[show]
   skip_before_action :authenticate_user!, only: [:show, :index]
-  # def index
-  #   @reviews = review.all
-  # end
+  def index
+    @reviews = Review.all
+  end
 
   def show
     @review = Review.new

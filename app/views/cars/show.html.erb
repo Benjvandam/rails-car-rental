@@ -1,12 +1,12 @@
 <span>Pictures come here</span>
+<div class="container justify-content-center">
+    <%= render "car_info"%>
+</div>
+
 
 <div class="container">
-  <div class="row my-3">
-    <h1><%= @car.title %></h1>
-    <p>Brand: <%= @car.brand %></p>
-    <p>Model: <%= @car.model %></p>
-    <p>Year: <%= @car.year %></p>
-    <p>Reviews: <%= @car.description %></p>
+  <div class="row my-6">
+
     <% @car.reviews.each do |review| %>
       <div class="col-12 col-md-4">
         <div class="card m-1 bg-light">
@@ -21,4 +21,10 @@
     <%= link_to 'Add a review', new_car_review_path(@car) %> |
   <%= link_to "Edit #{@car.title}", edit_car_path(@car) %>
 
+</div>
+<div data-controller="edit-form" id="booking">
+  <button data-action='click->edit-form#fire' class='m-4 btn btn-primary'>Available dates</button>
+    <div class="d-none m-4 p-2" data-edit-form-target="dropElement">
+      <%= render 'bookings/form', booking: @booking%>
+    </div>
 </div>
