@@ -1,19 +1,11 @@
 <div class="container">
-  <div class="d-flex justify-content-between">
-<%= cl_image_tag("https://res.cloudinary.com/dnvzgtwcu/image/upload/v1693421326/Ferrari-SP48-Unica_3_etwocr.jpg",
-      width: 300, height: 300, crop: :fill) %>
-      </div>
-    </div>
-
-<div class="container">
  <div class="d-flex justify-content-between">
   <div class="row">
     <% @cars.each do |car| %>
       <div class="col-4">
         <div class="card-category" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('<%= cl_image_path car.photo.key, height: 300, width: 300, crop: :fill %>'); background-size: cover">
-          <h1 class="text-light"> <%= car.title %></h1>
-            <p class="text-light"><%= car.brand %></p>
-            <a href="..." class="btn btn-primary">Click me</a>
+          <h1 class="text-light"> <%= car.brand %></h1>
+            <p class="text-light"><%= car.model %></p>
         </div>
       </div>
     <% end %>
