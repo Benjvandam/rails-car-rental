@@ -1,4 +1,9 @@
-<%= simple_form_for(user, url: chatrooms_path, method: :post) do |form| %>
-  <%= form.input :user_id, as: :hidden, input_html: { value: user.id } %>
-  <%= form.button :submit, user.name, class: "btn btn-primary" %>
-<% end %>
+<div class="notification">
+  <img src='https://st2.depositphotos.com/1791505/10117/i/950/depositphotos_101179392-stock-photo-bearded-crazy-person-lunatic.jpg' class="avatar-large" />
+  <div class="notification-content">
+    <%= simple_form_for(user, url: chatrooms_path, method: :post) do |form| %>
+    <%= form.input :user_id, as: :hidden, input_html: { value: user.id } %>
+    <%= form.button :submit, user.name %>
+  <% end %>
+  </div>
+</div>
