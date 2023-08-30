@@ -9,6 +9,10 @@ Rails.application.routes.draw do
 
   resources :bookings, only: %i[index destroy edit update]
 
+  resources :chatrooms, only: %i[index create show] do
+    resources :messages, only: :create
+  end
+
   # Defines the root path route ("/")
   # root "articles#index"
 end
