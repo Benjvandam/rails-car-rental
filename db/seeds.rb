@@ -24,7 +24,7 @@ end
              year: (1960..2023).to_a.sample, description: Faker::Quote.famous_last_words,
              location: Faker::University.name, user: array_of_users.sample, title: Faker::Cannabis.strain)
 
-  file = URI.open("https://upload.wikimedia.org/wikipedia/commons/thumb/8/82/NES-Console-Set.jpg/1200px-NES-Console-Set.jpg")
+  file = URI.open("https://revistacarro.com.br/wp-content/uploads/2022/05/Ferrari-SP48-Unica_3.jpg")
 
   car.photo.attach(io: file, filename: "nes.png", content_type: "image/png")
   car.save!
