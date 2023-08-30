@@ -1,5 +1,5 @@
 class BookingsController < ApplicationController
-  before_action :set_booking, only: %i[edit create destroy]
+  before_action :set_booking, only: %i[edit update create destroy]
   def index
     @bookings = Booking.all
   end
@@ -34,10 +34,10 @@ class BookingsController < ApplicationController
   end
 
   def booking_params
-    params.require(:car).permit(:car_id, :price, :date_from, :date_until, :user_id)
+    params.require(:booking).permit(:car_id, :price, :date_from, :date_until, :user_id)
   end
 
   def update_booking_params
-    params.require(:car).permit(:date_from, :date_until)
+    params.require(:booking).permit(:date_from, :date_until)
   end
 end
