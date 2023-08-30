@@ -4,9 +4,27 @@
   <h2>My Active Chats</h2>
   <ul class="list-group d-flex">
     <% User.all.each do |user| %>
-     <li class="list-group-item col-2">
-        <%= render "form", user: user %>
-     </li>
+      <% if Chatroom.find_by(
+        "(user1_id = ? AND user2_id = ?) OR (user1_id = ? AND user2_id = ?)",
+        current_user.id, user.id, user.id, current_user.id
+      ) %>
+        <li class="list-group-item col-2">
+            <%= render "form", user: user %>
+        </li>
+      <% end %>
+    <% end %>
+  </ul>
+  <h2>Chat with other users</h2>
+  <ul class="list-group d-flex">
+    <% User.all.each do |user| %>
+      <% if !Chatroom.find_by(
+        "(user1_id = ? AND user2_id = ?) OR (user1_id = ? AND user2_id = ?)",
+        current_user.id, user.id, user.id, current_user.id
+      ) %>
+        <li class="list-group-item col-2">
+            <%= render "form", user: user %>
+        </li>
+      <% end %>
     <% end %>
   </ul>
 </div>

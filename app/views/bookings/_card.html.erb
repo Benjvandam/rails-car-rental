@@ -24,5 +24,15 @@
 
     <%# <p data-edit-form-target="dropElement" class='d-none'>Coisa aleatoria</p> %>
     <%= link_to "Delete Booking", booking_path(booking), data: { turbo_method: :delete, turbo_confirm: 'Are you sure?'}, class: "btn btn-danger" %>
+
+    <%# link_to "Chatrooms#Show %>
+    <% if booking.user_id == current_user.id %>
+      <%= form_with url: chatrooms_path, method: :post do |form| %>
+        <%= form.fields_for :user do |user_form| %>
+          <%= user_form.hidden_field :user_id, value: booking.car.user.id %>
+        <% end %>
+        <%= form.submit "Chat with owner" %>
+      <% end %>
+    <% end %>
   </div>
 </div>
