@@ -45,8 +45,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_08_30_001725) do
   create_table "bookings", force: :cascade do |t|
     t.bigint "car_id", null: false
     t.float "price"
-    t.datetime "date_from"
-    t.datetime "date_until"
+    t.date "date_from"
+    t.date "date_until"
     t.bigint "user_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

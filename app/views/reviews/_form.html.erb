@@ -1,5 +1,5 @@
 <%= simple_form_for [@car, @review] do |f| %>
-  <%= f.input :description, label: "How was your experience with #{@car.user.name}'s #{@car.model} ?", error: 'Your description is to short!' %>
+  <%= f.input :description, label: "How was your experience with #{@car.user.name}'s #{@car.model} ?", error: 'Your description is to short! Mininum of 10 charaters' %>
   <%= f.input :rating, label: "Rating:", error: 'It needs to be 1 - 5 ⭐️' %>
   <button class='btn btn-primary m-2'>
   <%= f.button :submit %>
