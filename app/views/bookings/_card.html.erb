@@ -6,7 +6,13 @@
   </div>
   <ul class="list-group list-group-flush">
     <li class="list-group-item"><%= "$ #{booking.price}/hour" %></li>
-    <li class="list-group-item">Rented to: <%= "#{booking.user.name}" %></li>
+    <li class="list-group-item">
+       <% if booking.user_id == current_user.id %>
+          <%= "Rented from: #{booking.car.user.name}" %>
+        <% else %>
+          <%= "Rented to: #{booking.user.name}" %>
+        <% end %>
+    </li>
     <li class="list-group-item"><%= "From: #{booking.date_from} To: #{booking.date_until}" %></li>
   </ul>
   <div class="card-body">
