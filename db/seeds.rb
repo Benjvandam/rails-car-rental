@@ -11,14 +11,14 @@ require "faker"
 Car.destroy_all
 
 array_of_users = []
-5.times do
+20.times do
   user = User.create(email: Faker::Internet.email, name: Faker::Name.name,
                      birth_date: Faker::Date.in_date_period, password: '123456',
                      owner: false, address: Faker::Address.street_address)
   array_of_users << user
 end
 
-5.times do
+20.times do
   manufacturer = Faker::Vehicle.make
   car = Car.new(brand: manufacturer, model: Faker::Vehicle.model(make_of_model: manufacturer),
                 year: (1960..2023).to_a.sample, description: Faker::Quote.famous_last_words,
