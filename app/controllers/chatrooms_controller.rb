@@ -10,40 +10,32 @@ class ChatroomsController < ApplicationController
 
   def create
 
-    # sender = current_user
-    # receiver = User.find(params[:user][:user_id])
+    user_id = current_user.id
+    other_user_id = User.find(params[:user][:user_id]).id
 
-    # senderChatroomExists = false
-    # receiverChatroomExists = false
+    # Find a chatroom where the users match in either order
+    @chatroom = Chatroom.find_by(
+      "(user1_id = ? AND user2_id = ?) OR (user1_id = ? AND user2_id = ?)",
+      user_id, other_user_id, other_user_id, user_id
+    )
 
-    # chatrooms = Chatroom.all
-    # chatrooms.each do |chatroom|
-    #   chatroom.messages.each do |message|
-    #     if message.user == sender
-    #       senderChatroomExists = true
-    #     elsif message.user == receiver
-    #       receiverChatroomExists = true
-    #     end
-    #   end
+    if @chatroom
+      chatroom_exist = true
+    else
+      chatroom_exist = false
+    end
 
-    #   if senderChatroomExists && receiverChatroomExists
-    #     @chatroom = chatroom
-    #   else
-    #     senderChatroomExists = false
-    #     receiverChatroomExists = false
-    #   end
-    # end
+    unless chatroom_exist
+      @chatroom = Chatroom.new
+      @chatroom.user1_id = current_user.id
+      @chatroom.user2_id = User.find(params[:user][:user_id]).id
+    end
 
-    # if @chatroom == nil
-    #   @chatroom = Chatroom.new
-    #   if @chatroom.save
-    #     redirect_to chatroom_path(@chatroom)
-    #   else
-    #     render :index, status: :unprocessable_entity
-    #   end
-    # else
-    #   redirect_to chatroom_path(@chatroom)
-    # end
+    if @chatroom.save
+      redirect_to chatroom_path(@chatroom)
+    else
+      render :index, status: :unprocessable_entity
+    end
   end
 
   private
