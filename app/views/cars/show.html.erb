@@ -1,5 +1,24 @@
-<h1>Title of the post</h1>
-<h2>Pictures come here</h2>
-<h2>Details of the car</h2>
-<h2>Book Car</h2>
-<h2>Car Reviews</h2>
+<span>Pictures come here</span>
+
+<div class="container">
+  <div class="row my-3">
+    <h1><%= @car.title %></h1>
+    <p>Brand: <%= @car.brand %></p>
+    <p>Model: <%= @car.model %></p>
+    <p>Year: <%= @car.year %></p>
+    <p>Reviews: <%= @car.description %></p>
+    <% @car.reviews.each do |review| %>
+      <div class="col-12 col-md-4">
+        <div class="card m-1 bg-light">
+          <%= review.description %>
+          <span>Rating: <%=review.rating %></span>
+        </div>
+      </div>
+    <% end %>
+  </div>
+
+  <%= link_to 'Back to all cars', cars_path %> |
+    <%= link_to 'Add a review', new_car_review_path(@car) %> |
+  <%= link_to "Edit #{@car.title}", edit_car_path(@car) %>
+
+</div>

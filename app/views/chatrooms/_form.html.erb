@@ -1,0 +1,4 @@
+<%= simple_form_for(user, url: chatrooms_path, method: :post) do |form| %>
+  <%= form.input :user_id, as: :hidden, input_html: { value: user.id } %>
+  <%= form.button :submit, user.name, class: "btn btn-primary" %>
+<% end %>
