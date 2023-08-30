@@ -9,6 +9,7 @@ class CarsController < ApplicationController
     @review = Review.new
     @car = Car.find(params[:id])
     @review.user = current_user
+    @booking = Booking.new
   end
 
   def new
