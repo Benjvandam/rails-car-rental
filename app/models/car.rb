@@ -5,4 +5,5 @@ class Car < ApplicationRecord
   has_one_attached :photo
 
   validates :title, :brand, :year, :location, presence: true
+
 end

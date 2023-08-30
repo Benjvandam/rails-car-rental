@@ -21,8 +21,8 @@ end
 5.times do
   manufacturer = Faker::Vehicle.make
   car = Car.new(brand: manufacturer, model: Faker::Vehicle.model(make_of_model: manufacturer),
-             year: (1960..2023).to_a.sample, description: Faker::Quote.famous_last_words,
-             location: Faker::University.name, user: array_of_users.sample, title: Faker::Cannabis.strain)
+                year: (1960..2023).to_a.sample, description: Faker::Quote.famous_last_words,
+                location: Faker::University.name, user: array_of_users.sample, title: Faker::Cannabis.strain)
 
   file = URI.open("https://upload.wikimedia.org/wikipedia/commons/thumb/8/82/NES-Console-Set.jpg/1200px-NES-Console-Set.jpg")
 
