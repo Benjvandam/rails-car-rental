@@ -26,6 +26,7 @@
                 <a class="nav-link" href="#" data-bs-toggle="dropdown"><%= current_user.name %></a>
                 <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
                   <%= link_to "Log out", destroy_user_session_path, data: {turbo_method: :delete}, class: "dropdown-item" %>
+                  <%= link_to "Switch to Owner Mode", garage_user_path(current_user), class: "dropdown-item" %>
                 </div>
               </li>
             <% end %>
