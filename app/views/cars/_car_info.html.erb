@@ -8,7 +8,30 @@
       </h4>
 
     </div>
-    <div id="car-picture w-100" class='mt-2'>
-      <%= render 'cars/carousel' %>
+
+    <div class='row'>
+
+      <div id="car-picture" class='mt-2 col-6'>
+        <%= render 'cars/carousel' %>
+      </div>
+
+      <div data-controller="edit-form" class='col-6' id="booking">
+        <button data-action='click->edit-form#fire' class='m-4 btn btn-primary'>Available dates</button>
+        <div class="d-none m-4 p-2" data-edit-form-target="dropElement">
+
+          <%= simple_form_for(@booking, url: car_bookings_path(@car), method: :post) do |f| %>
+            <%= f.input :user_id, as: :hidden, input_html: {value: current_user.id} %>
+            <%= f.input :car_id, as: :hidden, input_html: {value: @car.id} %>
+            <%= f.input :price, as: :hidden, input_html: {value: 35} %>
+            <%= f.input :date_from, as: :string, input_html: {data: {edit_form_target: 'calendarFrom'} } %>
+            <%= f.input :date_until, as: :string, input_html: {data: {edit_form_target: 'calendarUntil'} } %>
+            <%= f.button :submit, class: "btn btn-success mb-2" %>
+          <% end %>
+        </div>
+      </div>
+          <% unless @booking.errors[:base].empty? %>
+            <p><%= @booking.errors[:base].first%></p>
+          <% end %>
     </div>
   </div>
+</div>

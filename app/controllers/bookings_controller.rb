@@ -31,6 +31,7 @@ class BookingsController < ApplicationController
 
   private
 
+
   def set_booking
     @booking = Booking.find(params[:id])
   end
@@ -42,4 +43,26 @@ class BookingsController < ApplicationController
   def update_booking_params
     params.require(:booking).permit(:date_from, :date_until)
   end
+
+  # def days_in_between(start_date, end_date)
+  #   days_between = []
+
+  #   while start_date <= end_date
+  #     days_between << current_date
+  #     current_date += 1
+  #   end
+  #   days_between
+  # end
+
+  # def date_available?(date_from_new_booking, date_until_new_booking)
+  #   flag = true
+  #   @car.bookings.each do |booking|
+  #     busy_days = days_in_between(booking.date_from, booking.date_until)
+  #     if busy_days.include(date_from_new_booking, date_until_new_booking)
+  #       flag = false
+  #       break
+  #     end
+  #   end
+  #   flag
+  # end
 end

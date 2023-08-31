@@ -4,6 +4,7 @@
 </div>
 
 
+
 <div class="container">
   <div class="row my-6">
 
@@ -21,17 +22,4 @@
     <%= link_to 'Add a review', new_car_review_path(@car) %> |
   <%= link_to "Edit #{@car.title}", edit_car_path(@car) %>
 
-</div>
-<div data-controller="edit-form" id="booking">
-  <button data-action='click->edit-form#fire' class='m-4 btn btn-primary'>Available dates</button>
-    <div class="d-none m-4 p-2" data-edit-form-target="dropElement">
-     <%# <%= simple_form_for [@car, @booking] do |f| %>
-     <%= simple_form_for(@booking, url: car_bookings_path(@car), method: :post) do |f| %>
-        <%= f.input :user_id, as: :hidden, input_html: {value: current_user.id} %>
-        <%= f.input :car_id, as: :hidden, input_html: {value: @car.id} %>
-        <%= f.input :price, as: :hidden, input_html: {value: 35} %>
-        <%= f.input :date_from, as: :string, input_html: {data: {edit_form_target: 'calendarFrom'} } %>
-        <%= f.input :date_until, as: :string, input_html: {data: {edit_form_target: 'calendarUntil'} } %>
-        <%= f.button :submit, class: "btn btn-success mb-2" %>
-      <% end %>
 </div>
