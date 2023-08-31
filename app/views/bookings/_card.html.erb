@@ -19,7 +19,7 @@
     <%# <%= link_to "Manage Booking", booking_path(booking), class: "btn btn-primary mb-2", data: {action: "click->edit-form#fire"} %>
     <button data-action='click->edit-form#fire' class='m-1 btn btn-primary'>Manage</button>
     <div class="d-none" data-edit-form-target="dropElement">
-      <%= render 'form', booking: @booking%>
+      <%= render 'bookings/form', booking: @booking%>
     </div>
 
     <%# <p data-edit-form-target="dropElement" class='d-none'>Coisa aleatoria</p> %>
