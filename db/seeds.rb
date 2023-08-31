@@ -10,6 +10,7 @@ require "faker"
 
 Car.destroy_all
 
+
 array_of_users = []
 10.times do
   user = User.create(email: Faker::Internet.email, name: Faker::Name.name,
