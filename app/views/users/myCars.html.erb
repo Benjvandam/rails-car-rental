@@ -1,0 +1,7 @@
+<h1>Welcome to the garage</h1>
+Here are all the cars that you own:
+<% if @cars %>
+  <% @cars.each do |car| %>
+    <p><%= car.title %></p>
+  <% end %>
+<% end %>
