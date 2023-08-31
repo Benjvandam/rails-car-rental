@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  def my_cars
+  def myCars
     @cars = current_user.cars
   end
 
