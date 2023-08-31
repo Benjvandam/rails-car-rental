@@ -1,5 +1,5 @@
 class CarsController < ApplicationController
-  before_action :set_car, only: %i[show]
+  before_action :set_car, only: %i[show edit]
   skip_before_action :authenticate_user!, only: [:show, :index]
   def index
     @cars = Car.all
@@ -22,7 +22,7 @@ class CarsController < ApplicationController
     if @car.save
       current_user.owner = true
       current_user.save
-      redirect_to car_path(@car)
+      redirect_to garage_path
     else
       render :new, status: :unprocessable_entity
     end
@@ -32,6 +32,15 @@ class CarsController < ApplicationController
   end
 
   def update
+    @car = Car.new(car_params)
+    @car.user = current_user
+    if @car.save
+      current_user.owner = true
+      current_user.save
+      redirect_to garage_path
+    else
+      render :new, status: :unprocessable_entity
+    end
   end
 
   def destroy
