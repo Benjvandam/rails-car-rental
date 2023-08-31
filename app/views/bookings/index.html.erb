@@ -1,4 +1,3 @@
-
 <h1>Bookings overview</h1>
 <div class="m-4">
 
@@ -14,20 +13,19 @@
 
     </div>
   </div>
-  <div class="m-4">
-    <% if current_user.owner == true %>
-      <div class="container">
+    <div class="m-4">
+          <h2 class='mb-4'>🚘Past Rentals🚘</h2>
 
-        <h2 class='mb-4'>🚘Cars that you are renting🚘</h2>
-        <div class="row">
-          <% current_user.cars.each do |car| %>
-            <% car.bookings.each do |booking| %>
-              <%= render 'card', booking: booking %>
-            <% end %>
-          <% end %>
+        <div class="container">
+
+          <div class="row">
+              <% current_user.bookings.each do |booking| %>
+                <% if booking.date_until < Date.today%>
+                  <%= render 'past_booking_card', booking: booking %>
+                <% end %>
+              <% end %>
+          </div>
         </div>
-      </div>
-    <% end %>
-  </div>
+    </div>
   </div>
 </div>
