@@ -13,7 +13,7 @@ Rails.application.routes.draw do
     resources :messages, only: :create
   end
 
-  resources :users, only: [] do
+  resources :users, only: %i[show] do
     get 'garage', on: :member
   end
 
