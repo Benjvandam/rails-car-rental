@@ -5,6 +5,7 @@ class Car < ApplicationRecord
   has_many :bookings, dependent: :destroy
 
   validates :title, :brand, :year, :location, presence: true
+  validates :price, numericality: { greater_than: 0 }
 
   def self.review_avarage(car)
     sum = 0.0

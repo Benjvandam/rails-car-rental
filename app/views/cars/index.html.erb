@@ -1,44 +1,43 @@
 
 <div class="container">
- <div class="d-flex justify-content-between">
-  <div class="row">
+  <div class="row justify-content-center">
     <% @cars.each do |car| %>
-      <div class="col-3 gap-4">
-        <div class="card" style="width: 18rem;">
+      <div class="col-3 m-4">
+        <div class="card soft-edges" style="width: 18rem;">
 
 
-            <div id="carouselExample" class="carousel slide">
-              <div class="carousel-inner">
-                <% car.photos.each do |photo| %>
-                  <div class="carousel-item active">
-                    <%= cl_image_tag photo.key, height: 300, width: 400, crop: :fill, class:"card-img-top d-block w-100" %>
-                  </div>
 
-                <% end %>
-              </div>
-              <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
-                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                <span class="visually-hidden">Previous</span>
-              </button>
-              <button class="carousel-control-next" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
-                <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                <span class="visually-hidden">Next</span>
-              </button>
 
-            </div>
+
+        <div id="carouselExampleSlidesOnly" class="carousel slide" data-bs-ride="carousel">
+          <div class="carousel-inner">
+            <% car.photos.each_with_index do |photo, index| %>
+              <% if index == 0 %>
+                <div class="carousel-item active">
+                  <%= cl_image_tag photo.key, height: 300, width: 400, crop: :fill, class: "card-img-top" %>
+                </div>
+              <% else %>
+                <div class="carousel-item">
+                  <%= cl_image_tag photo.key, height: 300, width: 400, crop: :fill, class: "card-img-top" %>
+                </div>
+              <% end %>
+            <% end %>
+          </div>
+        </div>
+
 
 
 
           <div class="card-body">
-           <h5 class="card-title"><%= car.title %></h5>
-            <p class="card-text"><%= car.brand %></p>
+            <h5 class="card-text"><%= car.brand %></h5>
             <p class="card-text"><%= car.model %></p>
             <p class="card-text"><%= car.year %></p>
             <p class="card-text"><%= car.description %></p>
 
 
-             <%= link_to "Check this Car", car_path(car), class: "btn btn-primary" %>
+            <%= link_to "Check this Car", car_path(car), class: "btn btn-primary" %>
           </div>
+
         </div>
       </div>
     <% end %>

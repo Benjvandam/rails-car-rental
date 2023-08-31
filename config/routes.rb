@@ -13,10 +13,9 @@ Rails.application.routes.draw do
     resources :messages, only: :create
   end
 
-  resources :users, only: [] do
-  end
+  resources :users, only: %i[show]
 
-  get 'garage', to: "users#myCars"
+  get 'garage', to: "users#myCars", as: "garage"
 
   # Defines the root path route ("/")
   # root "articles#index"
