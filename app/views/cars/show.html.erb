@@ -1,7 +1,8 @@
 <span>Pictures come here</span>
 <div class="container justify-content-center">
-    <%= render "car_info"%>
+    <%= render "cars/car_info", car: @car %>
 </div>
+
 
 
 <div class="container">
@@ -21,10 +22,4 @@
     <%= link_to 'Add a review', new_car_review_path(@car) %> |
   <%= link_to "Edit #{@car.title}", edit_car_path(@car) %>
 
-</div>
-<div data-controller="edit-form" id="booking">
-  <button data-action='click->edit-form#fire' class='m-4 btn btn-primary'>Available dates</button>
-    <div class="d-none m-4 p-2" data-edit-form-target="dropElement">
-      <%= render 'bookings/form', booking: @booking%>
-    </div>
 </div>

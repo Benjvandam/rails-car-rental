@@ -1,5 +1,6 @@
 class BookingsController < ApplicationController
-  before_action :set_booking, only: %i[edit update create destroy]
+  before_action :set_booking, only: %i[edit update destroy]
+
   def index
     @bookings = Booking.all
   end
@@ -18,26 +19,50 @@ class BookingsController < ApplicationController
   end
 
   def create
-    @booking = booking.new(booking_params)
+    @booking = Booking.new(booking_params)
+    @car = Car.find(params[:car_id])
     @booking.user = current_user
     if @booking.save
-      redirect_to booking_path(@booking)
+      redirect_to bookings_path
     else
-      render :new, status: :unprocessable_entity
+      render 'cars/show', status: :unprocessable_entity
     end
   end
 
   private
+
 
   def set_booking
     @booking = Booking.find(params[:id])
   end
 
   def booking_params
-    params.require(:booking).permit(:car_id, :price, :date_from, :date_until, :user_id)
+    params.require(:booking).permit(:car_id, :date_from, :date_until, :user_id)
   end
 
   def update_booking_params
     params.require(:booking).permit(:date_from, :date_until)
   end
+
+  # def days_in_between(start_date, end_date)
+  #   days_between = []
+
+  #   while start_date <= end_date
+  #     days_between << current_date
+  #     current_date += 1
+  #   end
+  #   days_between
+  # end
+
+  # def date_available?(date_from_new_booking, date_until_new_booking)
+  #   flag = true
+  #   @car.bookings.each do |booking|
+  #     busy_days = days_in_between(booking.date_from, booking.date_until)
+  #     if busy_days.include(date_from_new_booking, date_until_new_booking)
+  #       flag = false
+  #       break
+  #     end
+  #   end
+  #   flag
+  # end
 end

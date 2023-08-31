@@ -1,0 +1,25 @@
+<div class="container mt-5">
+  <div class="row">
+    <div class="col-md-4">
+      <!-- Profile Card -->
+      <div class="card">
+          <%= cl_image_tag current_user.photo.key, class: "rounded-circle", height: 150, width: 150, crop: :fill %>
+        <div class="card-body">
+          <h5 class="card-title"><%= @user.name %></h5>
+          <p class="card-text"><strong>Email:</strong> <%= @user.email %></p>
+          <p class="card-text"><strong>Birth Date:</strong> <%= @user.birth_date %></p>
+          <p class="card-text"><strong>Address:</strong> <%= @user.address %></p>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-8">
+      <!-- User Reviews Section -->
+      <div class="card">
+        <div class="card-body">
+          <h3>User Reviews</h3>
+          <!-- Add review cards here -->
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

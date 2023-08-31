@@ -11,4 +11,5 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   validates :name, :birth_date, :address, presence:true
+  has_one_attached :photo
 end

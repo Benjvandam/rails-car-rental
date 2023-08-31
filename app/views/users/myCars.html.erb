@@ -1,0 +1,33 @@
+<%# TEST %>
+<h1>Welcome to the garage</h1>
+<div class="m-4">
+  <div class="container">
+    <h2>Cars that you own 🚘</h2>
+    <div class="row">
+      <% if @cars %>
+        <% @cars.each do |car| %>
+          <p><%= car.title %></p>
+          <%= link_to "Edit Car", edit_car_path(car) %>
+           <%= link_to "Remove car", car_path(car), data: { turbo_method: :delete, turbo_confirm: 'Are you sure?'}, class: "btn btn-danger" %>
+        <% end %>
+      <% end %>
+    </div>
+    <%= link_to "Add a new car", new_car_path %>
+  </div>
+  <div class="m-4">
+    <% if current_user.owner == true %>
+      <div class="container">
+
+        <h2 class='mb-4'>🚘Cars that you are renting🚘</h2>
+        <div class="row">
+          <% current_user.cars.each do |car| %>
+            <% car.bookings.each do |booking| %>
+              <%= render 'bookings/card', booking: booking %>
+            <% end %>
+          <% end %>
+        </div>
+      </div>
+    <% end %>
+    </div>
+  </div>
+</div>
