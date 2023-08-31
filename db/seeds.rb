@@ -1,18 +1,39 @@
-# This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the bin/rails db:seed command (or created alongside the database with db:setup).
-#
-# Examples:
-#
-#   movies = Movie.create([{ name: "Star Wars" }, { name: "Lord of the Rings" }])
 #   Character.create(name: "Luke", movie: movies.first)
 require "open-uri"
 require "faker"
+
 Car.destroy_all
 
-
+Message.destroy_all
+Chatroom.destroy_all
+User.destroy_all
+Review.destroy_all
 array_of_users = []
-10.times do
+20.times do
   user = User.create(email: Faker::Internet.email, name: Faker::Name.name,
+
+emails = ["humberto@lewagon.com", "matt@lewagon.com", "ben@lewagon.com", "pedro@lewagon.com" ]
+
+names = ["humberto", "matt", "ben", "pedro"]
+
+user_photos = ["https://ca.slack-edge.com/T02NE0241-U05H2NBRFFY-2422604e0f19-512", "https://ca.slack-edge.com/T02NE0241-U05HJTYFZHP-e8affc977624-512","https://ca.slack-edge.com/T02NE0241-U05GUFPNAF9-29d236e53e03-512", "https://ca.slack-edge.com/T02NE0241-U05GAH9GN5D-d73433a0850a-512"]
+#Orange Lambo
+car_one = ["https://www.lamborghini.com/sites/it-en/files/DAM/lamborghini/masterpieces/gallardo-lp-550-2-2/Gallardo%20LP%20550-2-HEADER.jpg","https://cdn.dealeraccelerate.com/adrenalin/1/1706/44847/1920x1440/2004-lamborghini-gallardo-coupe-twin-turbo","https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQGIPpLdPOtS7PO_cexcppAOL-cbf8vY5tjqA-9xxMEuhPt1__CB1PMXrXYOfmfDWeiyyQ&usqp=CAU"]
+#BMW
+car_two = ["https://i.pinimg.com/originals/3c/99/c6/3c99c6d11bad8e68fdc1c1715adf1199.jpg","https://s.yimg.com/ny/api/res/1.2/p9A9czFvi2lQy0VCwFVN3w--/YXBwaWQ9aGlnaGxhbmRlcjtoPTY2Ng--/https://s.yimg.com/os/en_US/News/BusinessInsider/as-a-plug-in-hybrid-sports-car-bmw-i8-is-unlike-anything-on-the-road-today.jpg","https://www.autohausbr.com/wp-content/uploads/2022/04/FF9098BD-69A6-49F9-B6CB-740682D1E292-933x1400.jpeg?&"]
+#Rolls Royce phantom
+car_three = ["https://static.wikia.nocookie.net/pixar/images/6/63/Disney-cars-mcqueen.jpg/revision/latest?cb=20110727053733","https://i0.wp.com/pixarpost.com/wp-content/uploads/2020/10/cb295-lightning-mcqueen-cars-3-design-pixar-post-01.png?fit=1200%2C712&ssl=1","https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTQDSXIGzc5EkXs9FVW5J6nkeC4AmZktzInnA&usqp=CAU"]
+
+car_photos = [car_one, car_two, car_three]
+
+review_description = ["Very nice car", "Fast and confortable", "GOAT"]
+
+
+puts "Starting to seed..."
+
+puts "Seeding users..."
+emails.each_with_index do |email, index|
+  user = User.new(email: email, name: names[index],
                      birth_date: Faker::Date.in_date_period, password: '123456',
                      owner: false, address: Faker::Address.street_address)
                      file = URI.open(user_photos[index])
@@ -21,6 +42,7 @@ array_of_users = []
   array_of_users << user
 end
 
+20.times do
 puts "Seeding cars..."
 3.times do |i|
 
@@ -29,6 +51,9 @@ puts "Seeding cars..."
   manufacturer = Faker::Vehicle.make
   car = Car.new(brand: manufacturer, model: Faker::Vehicle.model(make_of_model: manufacturer),
                 year: (1960..2023).to_a.sample, description: Faker::Quote.famous_last_words,
+                location: Faker::University.name, user: array_of_users.sample, title: Faker::Cannabis.strain)
+
+  file1 = URI.open("https://upload.wikimedia.org/wikipedia/commons/thumb/8/82/NES-Console-Set.jpg/1200px-NES-Console-Set.jpg")
                 location: Faker::University.name, user: array_of_users.sample, title: Faker::Cannabis.strain,
                 price: rand(50.0..100_000.0))
   file1 = URI.open(car_photos[i][0])
@@ -42,10 +67,15 @@ puts "Seeding reviews..."
   review = Review.new(car_id: Car.all.sample.id, description: review_description[i], rating: rand(1..5), user_id: User.all.sample.id)
 end
 
+  file2 = URI.open("https://upload.wikimedia.org/wikipedia/commons/thumb/8/82/NES-Console-Set.jpg/1200px-NES-Console-Set.jpg")
 puts "Seeding bookings..."
 3.times do |i|
   booking = Booking.new(car_id: Car.all.sample.id, date_from: Date.new(2023, 8, 31), date_until: Date.new(2023, 9, 15), user_id: User.all.sample.id)
 end
 
+  file3 = URI.open("https://upload.wikimedia.org/wikipedia/commons/thumb/8/82/NES-Console-Set.jpg/1200px-NES-Console-Set.jpg")
+  car.photos.attach([io: file1, filename: "Car1.png", content_type: "image/png"], [io: file2, filename: "Car2.png", content_type: "image/png"], [io: file3, filename: "Car3.png", content_type: "image/png"])
 
+  car.save!
+end
 puts "Seeding is finished! :)"
