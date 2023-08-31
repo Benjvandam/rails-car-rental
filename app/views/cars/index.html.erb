@@ -1,19 +1,44 @@
-<div class="container">
-  <div class="d-flex justify-content-between">
-<% cl_image_tag("https://res.cloudinary.com/dnvzgtwcu/image/upload/v1693421326/Ferrari-SP48-Unica_3_etwocr.jpg",
-      width: 300, height: 300, crop: :fill) %>
-      </div>
-    </div>
 
 <div class="container">
  <div class="d-flex justify-content-between">
   <div class="row">
     <% @cars.each do |car| %>
-      <div class="col-3">
-        <div class="card-category">
-         <%# style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('<%= cl_image_path car.photo.key, height: 300, width: 300, crop: :fill %>
-          <h1 class="text-light"> <%= link_to car.brand, car_path(car) %></h1>
-            <p class="text-light"><%= car.title %></p>
+      <div class="col-3 gap-4">
+        <div class="card" style="width: 18rem;">
+
+
+            <div id="carouselExample" class="carousel slide">
+              <div class="carousel-inner">
+                <% car.photos.each do |photo| %>
+                  <div class="carousel-item active">
+                    <%= cl_image_tag photo.key, height: 300, width: 400, crop: :fill, class:"card-img-top d-block w-100" %>
+                  </div>
+
+                <% end %>
+              </div>
+              <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Previous</span>
+              </button>
+              <button class="carousel-control-next" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Next</span>
+              </button>
+
+            </div>
+
+
+
+          <div class="card-body">
+           <h5 class="card-title"><%= car.title %></h5>
+            <p class="card-text"><%= car.brand %></p>
+            <p class="card-text"><%= car.model %></p>
+            <p class="card-text"><%= car.year %></p>
+            <p class="card-text"><%= car.description %></p>
+
+
+             <%= link_to "Check this Car", car_path(car), class: "btn btn-primary" %>
+          </div>
         </div>
       </div>
     <% end %>
