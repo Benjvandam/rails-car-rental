@@ -5,7 +5,7 @@
     <h5 class="card-title"> <%= "#{booking.car.brand} " + "#{booking.car.model}" %></h5>
   </div>
   <ul class="list-group list-group-flush">
-    <li class="list-group-item"><%= "$ #{booking.price}/hour" %></li>
+    <li class="list-group-item"><%= "$ #{booking.car.price}/hour" %></li>
     <li class="list-group-item">
        <% if booking.user_id == current_user.id %>
           <%= "Rented from: #{booking.car.user.name}" %>
