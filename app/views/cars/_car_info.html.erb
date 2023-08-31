@@ -1,14 +1,14 @@
   <div id="infomartion-line" class='container'>
-    <div id="car-info" class='row'>
+    <div id="car-info" class='row border-bottom border-black border-5'>
 
-      <h4 class='col-6 p-2'> <%= "#{@car.brand}| #{@car.model} | #{@car.year}" %> </h4>
+      <h4 class='col-6 p-2'> <%= "#{car.brand}| #{car.model} | #{car.year}" %> </h4>
       <h4 class='col-6 ms-auto p-2'>
-        <%= "⭐️ #{Car.review_avarage(@car)}" %>
-        <%= link_to "#{@car.reviews.length} Reviews", car_reviews_path(@car) %>
+        <%= "⭐️ #{Car.review_avarage(car)}" %>
+        <%= link_to "#{car.reviews.length} Reviews", car_reviews_path(car) %>
       </h4>
 
     </div>
-    <div id="car-picture w-100">
-      <%= render 'carousel' %>
+    <div id="car-picture w-100" class='mt-2'>
+      <%= render 'cars/carousel' %>
     </div>
   </div>
