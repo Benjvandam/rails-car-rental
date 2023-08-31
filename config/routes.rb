@@ -14,8 +14,9 @@ Rails.application.routes.draw do
   end
 
   resources :users, only: [] do
-    get 'garage', on: :member
   end
+
+  get 'garage', to: "users#myCars"
 
   # Defines the root path route ("/")
   # root "articles#index"
