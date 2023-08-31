@@ -3,7 +3,7 @@ class Booking < ApplicationRecord
   belongs_to :user
   require 'date'
 
-  validates :price, :date_from, :date_until, presence: true
+  validates :date_from, :date_until, presence: true
   # Car must be available for booking to happen - TBV
   validates :date_from, comparison: { greater_than: Date.today }
   validates :date_until, comparison: { greater_than: :date_from }
