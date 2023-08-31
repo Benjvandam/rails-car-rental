@@ -1,5 +1,5 @@
 class CarsController < ApplicationController
-  before_action :set_car, only: %i[show edit]
+  before_action :set_car, only: %i[show edit destroy]
   skip_before_action :authenticate_user!, only: [:show, :index]
   def index
     @cars = Car.all
@@ -32,9 +32,8 @@ class CarsController < ApplicationController
   end
 
   def update
-    @car = Car.new(car_params)
-    @car.user = current_user
-    if @car.save
+    @car = Car.find(params[:id])
+    if @car.update(car_params)
       current_user.owner = true
       current_user.save
       redirect_to garage_path
@@ -44,6 +43,8 @@ class CarsController < ApplicationController
   end
 
   def destroy
+    @car.destroy
+    redirect_to garage_path
   end
 
   private

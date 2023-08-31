@@ -8,6 +8,7 @@
         <% @cars.each do |car| %>
           <p><%= car.title %></p>
           <%= link_to "Edit Car", edit_car_path(car) %>
+           <%= link_to "Remove car", car_path(car), data: { turbo_method: :delete, turbo_confirm: 'Are you sure?'}, class: "btn btn-danger" %>
         <% end %>
       <% end %>
     </div>
