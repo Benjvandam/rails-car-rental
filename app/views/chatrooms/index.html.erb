@@ -1,0 +1,24 @@
+<h1 class="text-center mt-3">Chats</h1>
+
+<div class="container-fluid">
+  <div class="col-3">
+    <h2 class="my-3">My Active Chats</h2>
+      <% User.all.each do |user| %>
+      <% if Chatroom.find_by(
+        "(user1_id = ? AND user2_id = ?) OR (user1_id = ? AND user2_id = ?)",
+        current_user.id, user.id, user.id, current_user.id
+      ) %>
+          <%= render "form", user: user %>
+      <% end %>
+    <% end %>
+    <h2 class="mb-3 mt-5">Chat with other users</h2>
+    <% User.all.each do |user| %>
+      <% if !Chatroom.find_by(
+        "(user1_id = ? AND user2_id = ?) OR (user1_id = ? AND user2_id = ?)",
+        current_user.id, user.id, user.id, current_user.id
+      ) %>
+          <%= render "form", user: user %>
+      <% end %>
+    <% end %>
+  </div>
+</div>

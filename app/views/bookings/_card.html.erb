@@ -1,0 +1,38 @@
+<% @booking = booking %>
+<div class="card m-2 col-3 p-0 rounded"  data-controller="edit-form">
+  <img src="https://media.istockphoto.com/id/542548890/pt/foto/ford-fiesta-st.jpg?s=612x612&w=is&k=20&c=fD_kGD6DISUNIaq0wKx25SHQt1B0tYoQDAYVd1suUpI=" class="card-img-top"  alt="...">
+  <div class="card-body">
+    <h5 class="card-title"> <%= "#{booking.car.brand} " + "#{booking.car.model}" %></h5>
+  </div>
+  <ul class="list-group list-group-flush">
+    <li class="list-group-item"><%= "$ #{booking.price}/hour" %></li>
+    <li class="list-group-item">
+       <% if booking.user_id == current_user.id %>
+          <%= "Rented from: #{booking.car.user.name}" %>
+        <% else %>
+          <%= "Rented to: #{booking.user.name}" %>
+        <% end %>
+    </li>
+    <li class="list-group-item"><%= "From: #{booking.date_from} To: #{booking.date_until}" %></li>
+  </ul>
+  <div class="card-body">
+    <%# <%= link_to "Manage Booking", booking_path(booking), class: "btn btn-primary mb-2", data: {action: "click->edit-form#fire"} %>
+    <button data-action='click->edit-form#fire' class='m-1 btn btn-primary'>Manage</button>
+    <div class="d-none" data-edit-form-target="dropElement">
+      <%= render 'form', booking: @booking%>
+    </div>
+
+    <%# <p data-edit-form-target="dropElement" class='d-none'>Coisa aleatoria</p> %>
+    <%= link_to "Delete Booking", booking_path(booking), data: { turbo_method: :delete, turbo_confirm: 'Are you sure?'}, class: "btn btn-danger" %>
+
+    <%# link_to "Chatrooms#Show %>
+    <% if booking.user_id == current_user.id %>
+      <%= form_with url: chatrooms_path, method: :post do |form| %>
+        <%= form.fields_for :user do |user_form| %>
+          <%= user_form.hidden_field :user_id, value: booking.car.user.id %>
+        <% end %>
+        <%= form.submit "Chat with owner" %>
+      <% end %>
+    <% end %>
+  </div>
+</div>

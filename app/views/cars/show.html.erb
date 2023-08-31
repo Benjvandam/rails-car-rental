@@ -1,5 +1,30 @@
-<h1>Title of the post</h1>
-<h2>Pictures come here</h2>
-<h2>Details of the car</h2>
-<h2>Book Car</h2>
-<h2>Car Reviews</h2>
+<span>Pictures come here</span>
+<div class="container justify-content-center">
+    <%= render "car_info"%>
+</div>
+
+
+<div class="container">
+  <div class="row my-6">
+
+    <% @car.reviews.each do |review| %>
+      <div class="col-12 col-md-4">
+        <div class="card m-1 bg-light">
+          <%= review.description %>
+          <span>Rating: <%=review.rating %></span>
+        </div>
+      </div>
+    <% end %>
+  </div>
+
+  <%= link_to 'Back to all cars', cars_path %> |
+    <%= link_to 'Add a review', new_car_review_path(@car) %> |
+  <%= link_to "Edit #{@car.title}", edit_car_path(@car) %>
+
+</div>
+<div data-controller="edit-form" id="booking">
+  <button data-action='click->edit-form#fire' class='m-4 btn btn-primary'>Available dates</button>
+    <div class="d-none m-4 p-2" data-edit-form-target="dropElement">
+      <%= render 'bookings/form', booking: @booking%>
+    </div>
+</div>

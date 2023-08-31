@@ -9,6 +9,7 @@ class CarsController < ApplicationController
     @review = Review.new
     @car = Car.find(params[:id])
     @review.user = current_user
+    @booking = Booking.new
   end
 
   def new
@@ -19,6 +20,8 @@ class CarsController < ApplicationController
     @car = Car.new(car_params)
     @car.user = current_user
     if @car.save
+      current_user.owner = true
+      current_user.save
       redirect_to car_path(@car)
     else
       render :new, status: :unprocessable_entity

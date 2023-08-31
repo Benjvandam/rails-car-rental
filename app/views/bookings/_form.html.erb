@@ -1,0 +1,5 @@
+<%= simple_form_for @booking do |f| %>
+  <%= f.input :date_from, as: :string, input_html: {data: {edit_form_target: 'calendarFrom'} } %>
+  <%= f.input :date_until, as: :string, input_html: {data: {edit_form_target: 'calendarUntil'} } %>
+  <%= f.button :submit, class: "btn btn-success mb-2" %>
+<% end %>
