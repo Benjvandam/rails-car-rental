@@ -1,8 +1,12 @@
 <div id="carouselExample" class="carousel slide mb-4">
     <div class="carousel-inner">
-      <% params[:photos].each_with_index do |photo_url, index| %>
-        <div class="carousel-item <%= index == 0 ? 'active' : '' %>">
-          <%= image_tag(photo_url, class: "d-block w-100", alt: "Car Image") %>
+      <% @car.photos.each_with_index do |photo, index| %>
+        <% if index.zero? %>
+        <div class="carousel-item active">
+          <% else %>
+        <div class="carousel-item">
+        <% end %>
+          <%= cl_image_tag(photo.key, height: 300, width: 400, crop: :fill) %>
         </div>
       <% end %>
     </div>

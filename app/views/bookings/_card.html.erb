@@ -1,6 +1,7 @@
 <% @booking = booking %>
 <div class="card m-2 col-3 p-0 rounded"  data-controller="edit-form">
-  <img src="https://media.istockphoto.com/id/542548890/pt/foto/ford-fiesta-st.jpg?s=612x612&w=is&k=20&c=fD_kGD6DISUNIaq0wKx25SHQt1B0tYoQDAYVd1suUpI=" class="card-img-top"  alt="...">
+  <%= cl_image_tag(car.photos.first.key, class: "card-img-top", alt: "Car Image") %>
+
   <div class="card-body">
     <h5 class="card-title"> <%= "#{booking.car.brand} " + "#{booking.car.model}" %></h5>
   </div>
