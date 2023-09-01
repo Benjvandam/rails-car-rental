@@ -35,7 +35,7 @@
             <ul class="list-group list-group-flush">
               <li class="list-group-item"> <%= "#{car.year}" %></li>
               <li class="list-group-item"> <%= "$ #{car.price.round(2)}/day" %></li>
-              <li class="list-group-item"> <%= "#{Car.review_avarage(car)}" %></li>
+              <li class="list-group-item"> <%= "⭐️ #{Car.review_avarage(car)}"%></li>
             </ul>
 
             <%= link_to "Check this Car", car_path(car), class: "btn btn-primary" %>

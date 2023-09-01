@@ -1,2 +1,21 @@
-<h1>Reviews for <%= @car.brand %></h1>
-<%= render "reviews/card", reviews: @reviews %>
+
+<div class="container">
+  <div class="row height">
+    <div class="col-8">
+      <h1>Reviews of <%= "#{@car.brand} | #{@car.model} | #{@car.year}" %></h1>
+    </div>
+    <div class="col-4">
+      <%= render 'shared/card_category', car: @car %>
+    </div>
+  </div>
+</div>
+
+<div class="container mt-4">
+
+  <div class="row">
+      <% @car.reviews.each do |review| %>
+        <%= render "reviews/card", review: review %>
+      <% end %>
+
+  </div>
+</div>
