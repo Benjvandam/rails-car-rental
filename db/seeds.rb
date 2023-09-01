@@ -22,6 +22,8 @@ car_two = ["https://i.pinimg.com/originals/3c/99/c6/3c99c6d11bad8e68fdc1c1715adf
 #Rolls Royce phantom
 car_three = ["https://i.pinimg.com/originals/ad/a1/d4/ada1d4426c68ff5d2710d23338d72062.jpg","https://atcimages.kbb.com/hn/c/6d6aa6ee22184b97b43533e990f73eb3.jpg","https://cdn05.carsforsale.com/00bbe10e1f3d5d05516a5644047ed817b6/480x360/2007-honda-civic-ex-w-navi-4dr-sedan-1-8l-i4-5a-.jpg"]
 
+
+
 car_photos = [car_one, car_two, car_three]
 
 review_description = ["Very nice car", "Fast and confortable", "GOAT"]
@@ -52,13 +54,11 @@ puts "Seeding cars..."
   car = Car.new(brand: manufacturer, model: Faker::Vehicle.model(make_of_model: manufacturer),
                 year: (1960..2023).to_a.sample, description: Faker::Quote.famous_last_words,
                 location: Faker::University.name, user: array_of_users.sample, title: Faker::Cannabis.strain,
-=======
-                price: rand(50.0..400.0))
+                price: rand(50.0..100_000.0))
 
   file1 = URI.open(car_photos[i][0])
   file2 = URI.open(car_photos[i][1])
   file3 = URI.open(car_photos[i][2])
-
   car.photos.attach([io: file1, filename: "Car#{i} - #{i + 1}.png", content_type: "image/png"], [io: file2, filename: "Car2.png", content_type: "image/png"], [io: file3, filename: "Car3.png", content_type: "image/png"])
   car.save!
 end
