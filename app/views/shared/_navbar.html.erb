@@ -32,7 +32,6 @@
                   <a class="nav-link" href="#" data-bs-toggle="dropdown"> <img src="https://images.nightcafe.studio//assets/profile.png?tr=w-640,c-at_max" alt="Image not found" class= "avatar dropdown-toggle"></a>
                 <% end %>
                 <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                  <%= link_to "Log out", destroy_user_session_path, data: {turbo_method: :delete}, class: "dropdown-item" %>
                   <button
                     class="dropdown-item"
                     data-action="click->navbar#enableOwnerMode"
@@ -45,6 +44,8 @@
                     data-navbar-target="ownerLinkText">
                     Switch to Renter Mode
                   </button>
+                  <%= link_to "My Profile", user_path(current_user), class: "dropdown-item" %>
+                  <%= link_to "Log out", destroy_user_session_path, data: {turbo_method: :delete}, class: "dropdown-item" %>
                 </div>
               </li>
             <% end %>

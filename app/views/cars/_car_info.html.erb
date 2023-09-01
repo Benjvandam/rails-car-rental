@@ -20,11 +20,17 @@
         <div class="d-none m-4 p-2" data-edit-form-target="dropElement">
 
           <%= simple_form_for(@booking, url: car_bookings_path(@car), method: :post) do |f| %>
-            <%= f.input :user_id, as: :hidden, input_html: {value: current_user.id} %>
+            <% if current_user %>
+              <%= f.input :user_id, as: :hidden, input_html: {value: current_user.id} %>
+            <% end %>
             <%= f.input :car_id, as: :hidden, input_html: {value: @car.id} %>
             <%= f.input :date_from, as: :string, input_html: {data: {edit_form_target: 'calendarFrom'} } %>
             <%= f.input :date_until, as: :string, input_html: {data: {edit_form_target: 'calendarUntil'} } %>
-            <%= f.button :submit, class: "btn btn-success mb-2" %>
+            <% if current_user %>
+              <%= f.button :submit, class: "btn btn-success mb-2" %>
+            <% else %>
+              <p>Please sign in to book this car</p>
+            <% end %>
           <% end %>
         </div>
       </div>

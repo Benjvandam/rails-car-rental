@@ -6,9 +6,8 @@ class CarsController < ApplicationController
   end
 
   def show
-    @review = Review.new
+    @reviews = @car.reviews
     @car = Car.find(params[:id])
-    @review.user = current_user
     @booking = Booking.new
   end
 
