@@ -1,19 +1,17 @@
 <%# TEST %>
-<h1>Welcome to the garage</h1>
 <div class="m-4">
   <div class="container">
-    <h2>Cars that you own 🚘</h2>
-    <div class="row">
+    <h1 class='mb-4'>Welcome to the garage</h1>
+    <h2 class='mb-4'>Cars that you own 🚘</h2>
       <% if @cars %>
+        <div class="row">
 
-        <% @cars.each do |car| %>
-          <p><%= car.title %></p>
-          <%= link_to "Edit Car", edit_car_path(car) %>
-           <%= link_to "Remove car", car_path(car), data: { turbo_method: :delete, turbo_confirm: 'Are you sure?'}, class: "btn btn-danger" %>
-        <% end %>
+          <% @cars.each do |car| %>
+            <%= render "/shared/car_card_garage", car: car %>
+          <% end %>
 
+        </div>
       <% end %>
-    </div>
     <%= link_to "Add a new car", new_car_path %>
   </div>
   <div class="m-4">

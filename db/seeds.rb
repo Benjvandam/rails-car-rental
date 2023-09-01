@@ -52,7 +52,7 @@ puts "Seeding cars..."
   car = Car.new(brand: manufacturer, model: Faker::Vehicle.model(make_of_model: manufacturer),
                 year: (1960..2023).to_a.sample, description: Faker::Quote.famous_last_words,
                 location: Faker::University.name, user: array_of_users.sample, title: Faker::Cannabis.strain,
-=======
+
                 price: rand(50.0..400.0))
 
   file1 = URI.open(car_photos[i][0])
