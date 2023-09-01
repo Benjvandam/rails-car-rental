@@ -3,23 +3,44 @@
     <div class="col-md-4">
       <!-- Profile Card -->
       <div class="card">
-          <%= cl_image_tag current_user.photo.key, class: "rounded-circle", height: 150, width: 150, crop: :fill %>
+          <% if current_user.photo.attached? %>
+            <%= cl_image_tag current_user.photo.key, class: "rounded-circle", height: 150, width: 150, crop: :fill %>
+          <% end %>
         <div class="card-body">
           <h5 class="card-title"><%= @user.name %></h5>
           <p class="card-text"><strong>Email:</strong> <%= @user.email %></p>
           <p class="card-text"><strong>Birth Date:</strong> <%= @user.birth_date %></p>
           <p class="card-text"><strong>Address:</strong> <%= @user.address %></p>
+          <% if @user != current_user %>
+            <%= form_with url: chatrooms_path, method: :post do |form| %>
+            <%= form.fields_for :user do |user_form| %>
+              <%= user_form.hidden_field :user_id, value: @user.id %>
+                <% end %>
+              <%= form.submit "Chat with this person" %>
+            <% end %>
+          <% end %>
         </div>
       </div>
     </div>
     <div class="col-md-8">
       <!-- User Reviews Section -->
-      <div class="card">
-        <div class="card-body">
-          <h3>User Reviews</h3>
-          <!-- Add review cards here -->
+      <% if @user.owner %>
+        <div class="card">
+          <div class="card-body">
+            <h3>Car reviews for <%= @user.name %></h3>
+            <!-- Add review cards here -->
+            <% @user.reviews.each do |review| %>
+              <div class="col-12 col-md-4">
+                <div class="card m-1 bg-light">
+                  <strong><p class="mb-3"><%= review.car.brand %></p></strong>
+                  <p><%= review.description %></p>
+                  <span>Rating: <%=review.rating %></span>
+                </div>
+              </div>
+            <% end %>
+          </div>
         </div>
-      </div>
+      <% end %>
     </div>
   </div>
 </div>
