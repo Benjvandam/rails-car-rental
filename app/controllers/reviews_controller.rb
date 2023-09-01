@@ -38,7 +38,7 @@ class ReviewsController < ApplicationController
   private
 
   def set_review
-    @review = review.find(params[:id])
+    @review = Review.find(params[:car_id])
   end
 
   def review_params

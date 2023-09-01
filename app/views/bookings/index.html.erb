@@ -20,8 +20,8 @@
 
           <div class="row">
               <% current_user.bookings.each do |booking| %>
-                <% if booking.date_until < Date.today%>
-                  <%= render 'past_booking_card', booking: booking %>
+                <% if booking.date_until < Date.today + 5%>
+                  <%= render 'past_booking_card', booking: booking, car: booking.car %>
                 <% end %>
               <% end %>
           </div>
