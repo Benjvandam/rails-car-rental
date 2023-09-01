@@ -23,6 +23,7 @@
             <p class="card-text"><%= car.model %></p>
             <p class="card-text"><%= car.year %></p>
             <p class="card-text"><%= car.description %></p>
+            <p class="card-text"><%= car.price %></p>
             <%= link_to "Check this Car", car_path(car, photos: car.photos.map(&:url)) %>
           </div>
         </div>
