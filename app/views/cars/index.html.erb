@@ -1,43 +1,30 @@
-
 <div class="container">
   <div class="row justify-content-center">
     <% @cars.each do |car| %>
       <div class="col-3 m-4">
         <div class="card soft-edges" style="width: 18rem;">
-
-
-
-
-
-        <div id="carouselExampleSlidesOnly" class="carousel slide" data-bs-ride="carousel">
-          <div class="carousel-inner">
-            <% car.photos.each_with_index do |photo, index| %>
-              <% if index == 0 %>
-                <div class="carousel-item active">
-                  <%= cl_image_tag photo.key, height: 300, width: 400, crop: :fill, class: "card-img-top" %>
-                </div>
-              <% else %>
-                <div class="carousel-item">
-                  <%= cl_image_tag photo.key, height: 300, width: 400, crop: :fill, class: "card-img-top" %>
-                </div>
+          <div id="carouselExampleSlidesOnly" class="carousel slide" data-bs-ride="carousel">
+            <div class="carousel-inner">
+              <% car.photos.each_with_index do |photo, index| %>
+                <% if index == 0 %>
+                  <div class="carousel-item active">
+                    <%= cl_image_tag photo.key, height: 300, width: 400, crop: :fill, class: "card-img-top" %>
+                  </div>
+                <% else %>
+                  <div class="carousel-item">
+                    <%= cl_image_tag photo.key, height: 300, width: 400, crop: :fill, class: "card-img-top" %>
+                  </div>
+                <% end %>
               <% end %>
-            <% end %>
+            </div>
           </div>
-        </div>
-
-
-
-
           <div class="card-body">
             <h5 class="card-text"><%= car.brand %></h5>
             <p class="card-text"><%= car.model %></p>
             <p class="card-text"><%= car.year %></p>
             <p class="card-text"><%= car.description %></p>
-
-
-            <%= link_to "Check this Car", car_path(car), class: "btn btn-primary" %>
+            <%= link_to "Check this Car", car_path(car, photos: car.photos.map(&:url)) %>
           </div>
-
         </div>
       </div>
     <% end %>
