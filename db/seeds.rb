@@ -50,10 +50,10 @@ puts "Seeding cars..."
 
   manufacturer = Faker::Vehicle.make
   car = Car.new(brand: manufacturer, model: Faker::Vehicle.model(make_of_model: manufacturer),
-                year: (1960..2023).to_a.sample, description: Faker::Quote.famous_last_words,
+                year: (1960..2023).to_a.sample, description: Faker::Coffee.notes,
                 location: Faker::University.name, user: array_of_users.sample, title: Faker::Cannabis.strain,
 
-                price: rand(50.0..400.0))
+                price: rand(50..400))
 
   file1 = URI.open(car_photos[i][0])
   file2 = URI.open(car_photos[i][1])
