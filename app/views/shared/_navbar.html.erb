@@ -1,7 +1,8 @@
-<div class="navbar navbar-expand-sm navbar-light navbar-lewagon" data-controller="navbar">
+<div class="navbar navbar-expand-sm navbar-light navbar-lewagon bg-danger rounded" data-controller="navbar">
   <div class="container-fluid">
-    <%= link_to cars_path, class: "navbar-brand" do %>
-      <%= image_tag "https://raw.githubusercontent.com/lewagon/fullstack-images/master/uikit/logo.png" %>
+    <%= link_to cars_path, class: "navbar-brand font-family-monospace" do %>
+      <%= image_tag "https://clipart-library.com/img/1827738.jpg", class: "rounded" %>
+      <span class="d-none d-sm-inline logo-text text-white">The Car-tel</span>
     <% end %>
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -12,16 +13,16 @@
       <ul class="navbar-nav me-auto">
         <% if user_signed_in? %>
           <li class="nav-item active">
-            <%= link_to "Home", cars_path, class: "nav-link" %>
+            <%= link_to "Home", cars_path, class: "nav-link text-white" %>
           </li>
           <li class="nav-item">
-            <%= link_to "Messages", chatrooms_path, class: "nav-link" %>
+            <%= link_to "Messages", chatrooms_path, class: "nav-link text-white" %>
           </li>
           <li class="nav-item" data-navbar-target="myBookings">
             <%= link_to "My Bookings", bookings_path, class: "nav-link" %>
           </li>
           <li class="nav-item d-none" data-navbar-target="myGarage">
-            <%= link_to "My Garage", garage_path, class: "nav-link" %>
+            <%= link_to "My Garage", garage_path, class: "nav-link text-white" %>
           </li>
           <li class="nav-item dropdown">
             <% if user_signed_in? %>

@@ -31,9 +31,9 @@ puts "Seeding cars..."
                 year: (1960..2023).to_a.sample, description: Faker::Quote.famous_last_words,
                 location: Faker::University.name, user: array_of_users.sample, title: Faker::Cannabis.strain,
                 price: rand(50.0..100_000.0))
-  file1 = URI.open(car_photos[i][0])
-  file2 = URI.open(car_photos[i][1])
-  file3 = URI.open(car_photos[i][2])
+  file1 = URI.open(car_photo[i][0])
+  file2 = URI.open(car_photo[i][1])
+  file3 = URI.open(car_photo[i][2])
   car.photos.attach([io: file1, filename: "Car#{i} - #{i + 1}.png", content_type: "image/png"], [io: file2, filename: "Car2.png", content_type: "image/png"], [io: file3, filename: "Car3.png", content_type: "image/png"])
   car.save!
 end
