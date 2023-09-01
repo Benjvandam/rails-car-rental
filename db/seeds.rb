@@ -24,7 +24,7 @@ car_three = ["https://i.pinimg.com/originals/ad/a1/d4/ada1d4426c68ff5d2710d23338
 
 car_photos = [car_one, car_two, car_three]
 
-review_description = ["Very nice car", "Fast and confortable", "GOAT"]
+review_description = ["Very nice car", "Fast and confortable", "GOATILUS", "worst car of my life", "GJUS WOMAN WHO DO YOU THINK YOU ARE", "THIS CAR NAME MUST BE OPTMIUS PRIME"]
 
 
 puts "Starting to seed..."
@@ -64,13 +64,20 @@ puts "Seeding cars..."
 end
 
 puts "Seeding reviews..."
-3.times do |i|
-  review = Review.new(car_id: Car.all.sample.id, description: review_description[i], rating: rand(1..5), user_id: User.all.sample.id)
+20.times do |i|
+  review = Review.new(car_id: Car.all.sample.id, description: review_description.sample, rating: rand(1..5), user_id: User.all.sample.id)
+  review.save!
 end
 
 puts "Seeding bookings..."
 3.times do |i|
   booking = Booking.new(car_id: Car.all.sample.id, date_from: Date.new(2023, 8, 31), date_until: Date.new(2023, 9, 15), user_id: User.all.sample.id)
 end
+
+puts "seeding reviews"
+# Review.create!(car_id: Car.all[1], user_id: User.all[1], rating: [1, 2, 3, 4, 5].sample, description: Faker::Science.element_subcategory )
+# Review.create!(car_id: Car.all[1], user_id: User.all[2], rating: [1, 2, 3, 4, 5].sample, description: Faker::Science.element_subcategory )
+# Review.create!(car_id: Car.all[1], user_id: User.all[3], rating: [1, 2, 3, 4, 5].sample, description: Faker::Science.element_subcategory )
+
 
 puts "Seeding is finished! :)"
