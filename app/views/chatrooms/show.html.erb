@@ -2,7 +2,15 @@
     data-controller="chatroom-subscription"
     data-chatroom-subscription-chatroom-id-value="<%= @chatroom.id %>"
 >
-  <h1>#<%= @chatroom.id %></h1>
+  <h1>Yor chat with
+    <strong>
+    <% if @chatroom.user1_id = current_user.id %>
+      <%= User.find(@chatroom.user2_id).name %>
+    <% else %>
+      <%= User.find(@chatroom.user1_id).name %>
+    <% end %>
+    </strong>
+  </h1>
 
   <div class="messages" data-chatroom-subscription-target="messages">
     <% @chatroom.messages.each do |message| %>
