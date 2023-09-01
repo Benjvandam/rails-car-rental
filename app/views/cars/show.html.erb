@@ -1,25 +1,18 @@
-<span>Pictures come here</span>
 <div class="container justify-content-center">
     <%= render "cars/car_info", car: @car %>
 </div>
 
 
 
-<div class="container">
-  <div class="row my-6">
+<div class="container text-center">
+  <%= link_to '⬅ Back to all cars', cars_path, class: 'btn btn-primary my-4' %>
 
-    <% @car.reviews.each do |review| %>
-      <div class="col-12 col-md-4">
-        <div class="card m-1 bg-light">
-          <%= review.description %>
-          <span>Rating: <%=review.rating %></span>
-        </div>
-      </div>
+  <h3>Comments from past renters</h3>
+
+  <div class="row">
+    <% @reviews.first(3).each do |review| %>
+      <%= render "reviews/card", review: review %>
     <% end %>
   </div>
-
-  <%= link_to 'Back to all cars', cars_path %> |
-    <%= link_to 'Add a review', new_car_review_path(@car) %> |
-  <%= link_to "Edit #{@car.title}", edit_car_path(@car) %>
 
 </div>

@@ -2,13 +2,11 @@ class ReviewsController < ApplicationController
   before_action :set_review, only: %i[show]
   skip_before_action :authenticate_user!, only: [:show, :index]
   def index
-    @reviews = Review.all
+    @car = Car.find(params[:car_id])
+    @reviews = @car.reviews
   end
 
   def show
-    @review = Review.new
-    @review = review.find(params[:id])
-    @review.user = current_user
   end
 
   def new
@@ -40,7 +38,7 @@ class ReviewsController < ApplicationController
   private
 
   def set_review
-    @review = review.find(params[:id])
+    @review = Review.find(params[:car_id])
   end
 
   def review_params
