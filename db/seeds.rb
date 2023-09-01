@@ -3,13 +3,12 @@ require "open-uri"
 require "faker"
 
 Car.destroy_all
-
 Message.destroy_all
 Chatroom.destroy_all
 User.destroy_all
 Review.destroy_all
-array_of_users = []
 
+array_of_users = []
 
 emails = ["humberto@lewagon.com", "matt@lewagon.com", "ben@lewagon.com", "pedro@lewagon.com" ]
 
@@ -21,7 +20,7 @@ car_one = ["https://www.lamborghini.com/sites/it-en/files/DAM/lamborghini/master
 #BMW
 car_two = ["https://i.pinimg.com/originals/3c/99/c6/3c99c6d11bad8e68fdc1c1715adf1199.jpg","https://s.yimg.com/ny/api/res/1.2/p9A9czFvi2lQy0VCwFVN3w--/YXBwaWQ9aGlnaGxhbmRlcjtoPTY2Ng--/https://s.yimg.com/os/en_US/News/BusinessInsider/as-a-plug-in-hybrid-sports-car-bmw-i8-is-unlike-anything-on-the-road-today.jpg","https://www.autohausbr.com/wp-content/uploads/2022/04/FF9098BD-69A6-49F9-B6CB-740682D1E292-933x1400.jpeg?&"]
 #Rolls Royce phantom
-car_three = ["https://static.wikia.nocookie.net/pixar/images/6/63/Disney-cars-mcqueen.jpg/revision/latest?cb=20110727053733","https://i0.wp.com/pixarpost.com/wp-content/uploads/2020/10/cb295-lightning-mcqueen-cars-3-design-pixar-post-01.png?fit=1200%2C712&ssl=1","https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTQDSXIGzc5EkXs9FVW5J6nkeC4AmZktzInnA&usqp=CAU"]
+car_three = ["https://i.pinimg.com/originals/ad/a1/d4/ada1d4426c68ff5d2710d23338d72062.jpg","https://atcimages.kbb.com/hn/c/6d6aa6ee22184b97b43533e990f73eb3.jpg","https://cdn05.carsforsale.com/00bbe10e1f3d5d05516a5644047ed817b6/480x360/2007-honda-civic-ex-w-navi-4dr-sedan-1-8l-i4-5a-.jpg"]
 
 car_photos = [car_one, car_two, car_three]
 
@@ -52,10 +51,9 @@ puts "Seeding cars..."
   manufacturer = Faker::Vehicle.make
   car = Car.new(brand: manufacturer, model: Faker::Vehicle.model(make_of_model: manufacturer),
                 year: (1960..2023).to_a.sample, description: Faker::Quote.famous_last_words,
-                location: Faker::University.name, user: array_of_users.sample, title: Faker::Cannabis.strain)
-
                 location: Faker::University.name, user: array_of_users.sample, title: Faker::Cannabis.strain,
                 price: rand(50.0..100_000.0))
+
   file1 = URI.open(car_photos[i][0])
   file2 = URI.open(car_photos[i][1])
   file3 = URI.open(car_photos[i][2])
@@ -63,21 +61,14 @@ puts "Seeding cars..."
   car.save!
 end
 
-
 puts "Seeding reviews..."
 3.times do |i|
   review = Review.new(car_id: Car.all.sample.id, description: review_description[i], rating: rand(1..5), user_id: User.all.sample.id)
 end
 
-  file2 = URI.open("https://upload.wikimedia.org/wikipedia/commons/thumb/8/82/NES-Console-Set.jpg/1200px-NES-Console-Set.jpg")
 puts "Seeding bookings..."
 3.times do |i|
   booking = Booking.new(car_id: Car.all.sample.id, date_from: Date.new(2023, 8, 31), date_until: Date.new(2023, 9, 15), user_id: User.all.sample.id)
 end
 
-  file3 = URI.open("https://upload.wikimedia.org/wikipedia/commons/thumb/8/82/NES-Console-Set.jpg/1200px-NES-Console-Set.jpg")
-  car.photos.attach([io: file1, filename: "Car1.png", content_type: "image/png"], [io: file2, filename: "Car2.png", content_type: "image/png"], [io: file3, filename: "Car3.png", content_type: "image/png"])
-
-  car.save!
-end
 puts "Seeding is finished! :)"
