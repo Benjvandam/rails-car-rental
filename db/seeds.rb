@@ -9,8 +9,7 @@ Chatroom.destroy_all
 User.destroy_all
 Review.destroy_all
 array_of_users = []
-20.times do
-  user = User.create(email: Faker::Internet.email, name: Faker::Name.name,
+
 
 emails = ["humberto@lewagon.com", "matt@lewagon.com", "ben@lewagon.com", "pedro@lewagon.com" ]
 
@@ -32,6 +31,7 @@ review_description = ["Very nice car", "Fast and confortable", "GOAT"]
 puts "Starting to seed..."
 
 puts "Seeding users..."
+
 emails.each_with_index do |email, index|
   user = User.new(email: email, name: names[index],
                      birth_date: Faker::Date.in_date_period, password: '123456',
@@ -42,8 +42,9 @@ emails.each_with_index do |email, index|
   array_of_users << user
 end
 
-20.times do
+
 puts "Seeding cars..."
+
 3.times do |i|
 
   puts " creating car n. #{i + 1}"
@@ -53,7 +54,6 @@ puts "Seeding cars..."
                 year: (1960..2023).to_a.sample, description: Faker::Quote.famous_last_words,
                 location: Faker::University.name, user: array_of_users.sample, title: Faker::Cannabis.strain)
 
-  file1 = URI.open("https://upload.wikimedia.org/wikipedia/commons/thumb/8/82/NES-Console-Set.jpg/1200px-NES-Console-Set.jpg")
                 location: Faker::University.name, user: array_of_users.sample, title: Faker::Cannabis.strain,
                 price: rand(50.0..100_000.0))
   file1 = URI.open(car_photos[i][0])
@@ -62,6 +62,8 @@ puts "Seeding cars..."
   car.photos.attach([io: file1, filename: "Car#{i} - #{i + 1}.png", content_type: "image/png"], [io: file2, filename: "Car2.png", content_type: "image/png"], [io: file3, filename: "Car3.png", content_type: "image/png"])
   car.save!
 end
+
+
 puts "Seeding reviews..."
 3.times do |i|
   review = Review.new(car_id: Car.all.sample.id, description: review_description[i], rating: rand(1..5), user_id: User.all.sample.id)
