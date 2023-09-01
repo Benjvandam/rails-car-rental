@@ -1,8 +1,9 @@
-<% @reviews.each do |review| %>
-  <div class="col-12 col-md-4">
-    <div class="card m-1 bg-light">
-      <%= review.description %>
-      <span>Rating: <%=review.rating %></span>
-    </div>
+
+
+<div class="card m-2 col-3" style="width: 18rem;">
+  <div class="card-body">
+    <h5 class="card-title"> <%= "Renter: #{review.user.name.capitalize}" %></h5>
+    <h6 class="card-subtitle mb-2 text-muted"> <%= " Rating #{review.rating.round(2)}⭐️" %></h6>
+    <p class="card-text"><%= "#{review.description.capitalize}" %></p>
   </div>
-<% end %>
+</div>

@@ -4,15 +4,14 @@
 
 
 
-<div class="container">
-  <div class="row my-6">
+<div class="container text-center">
+  <%= link_to '⬅ Back to all cars', cars_path, class: 'btn btn-primary my-4' %>
 
-    <%= link_to 'Back to all cars', cars_path %>
+  <h3>Comments from past renters</h3>
 
-
-    <div>
-      <p>Reviews for this car</p>
-      <%= render "reviews/card", reviews: @reviews %>
-    </div>
+  <div class="row">
+    <% @reviews.first(3).each do |review| %>
+      <%= render "reviews/card", review: review %>
+    <% end %>
   </div>
 </div>
