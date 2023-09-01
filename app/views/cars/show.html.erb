@@ -10,7 +10,7 @@
   <h3>Comments from past renters</h3>
 
   <div class="row">
-    <% @reviews.each do |review| %>
+    <% @reviews.first(3).each do |review| %>
       <%= render "reviews/card", review: review %>
     <% end %>
   </div>

@@ -21,11 +21,10 @@
           <div class="card-body rounded-4">
             <h5 class="card-text"><%= "#{car.brand} #{car.model}" %></h5>
             <p class="card-text"><%= car.description %></p>
-    <%= link_to "Check this Car", car_path(car, photos: car.photos.map(&:url)) %>
             <ul class="list-group list-group-flush">
               <li class="list-group-item"> <%= "#{car.year}" %></li>
               <li class="list-group-item"> <%= "$ #{car.price.floor}/Day" %></li>
-              <li class="list-group-item"> <%= "#{Car.review_avarage(car)}" %></li>
+              <li class="list-group-item"> <%= "⭐️ #{Car.review_avarage(car).round(2)}" %></li>
             </ul>
             <%= link_to "Check this Car", car_path(car), class: "btn btn-primary" %>
 
